@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translation Worksheets — Inclusive Learning Supports</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #faf8f2; color: #1a1a1a; min-height: 100vh; }
+
+  nav { background: #faf8f2; border-bottom: 1px solid #e8e4d8; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-size: 15px; font-weight: 600; color: #1a1a1a; text-decoration: none; }
+  .nav-back { font-size: 13px; color: #888; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 7px 16px; border: 1px solid #e0ddd4; border-radius: 999px; transition: all 0.15s; }
+  .nav-back:hover { background: #f0ece0; color: #1a1a1a; }
+
+  .hero { padding: 48px 32px 32px; max-width: 960px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: #aaa; }
+  .hero h1 { font-size: 36px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; line-height: 1.2; }
+  .hero p { font-size: 15px; color: #888; line-height: 1.6; }
+
+  .tabs-section { max-width: 960px; margin: 0 auto; padding: 0 32px 48px; }
+  .lang-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .lang-tab { padding: 8px 20px; border-radius: 999px; border: 1px solid #d9d4c7; font-size: 13px; font-weight: 500; cursor: pointer; background: #faf8f2; color: #888; transition: all 0.15s; font-family: inherit; }
+  .lang-tab.active { background: #1a1a1a; color: #faf8f2; border-color: #1a1a1a; }
+  .lang-tab:hover:not(.active) { background: #f0ece0; color: #1a1a1a; }
+
+  .count-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; background: #f0ece0; font-size: 11px; color: #888; margin-bottom: 20px; margin-top: 10px; }
+
+  .slider-outer { position: relative; padding: 0 20px; }
+  .cards-track { display: flex; gap: 14px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+  .cards-track::-webkit-scrollbar { height: 3px; }
+  .cards-track::-webkit-scrollbar-thumb { background: #d9d4c7; border-radius: 4px; }
+
+  .ws-card { min-width: 160px; max-width: 160px; background: #fff; border: 1px solid #e8e4d8; border-radius: 16px; overflow: hidden; scroll-snap-align: start; flex-shrink: 0; transition: transform 0.15s, box-shadow 0.15s; }
+  .ws-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .ws-thumb { width: 100%; height: 110px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 600; }
+  .ws-body { padding: 12px 14px 14px; }
+  .ws-num { font-size: 10px; color: #bbb; margin-bottom: 3px; }
+  .ws-title { font-size: 12px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; line-height: 1.3; min-height: 32px; }
+  .ws-btn { width: 100%; padding: 7px 0; border-radius: 999px; border: 1px solid #d9d4c7; background: transparent; font-size: 11px; font-family: inherit; color: #555; cursor: pointer; transition: all 0.15s; font-weight: 500; }
+  .ws-btn:hover { background: #f0ece0; border-color: #c5c0b0; }
+
+  .arrow-btn { position: absolute; top: 42px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid #d9d4c7; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: #555; z-index: 2; transition: all 0.15s; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .arrow-btn:hover { background: #f0ece0; }
+  .arrow-btn.left { left: -4px; }
+  .arrow-btn.right { right: -4px; }
+
+  hr { border: none; border-top: 1px solid #e8e4d8; max-width: 960px; margin: 0 auto 40px; }
+
+  .bottom-banner { max-width: 960px; margin: 0 auto 60px; padding: 0 32px; }
+  .banner-inner { background: #1a1a1a; border-radius: 20px; padding: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .banner-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #c9b97a; margin-bottom: 6px; }
+  .banner-title { font-size: 20px; font-weight: 600; color: #faf8f2; margin-bottom: 4px; }
+  .banner-sub { font-size: 13px; color: #666; }
+  .banner-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-gold { padding: 10px 24px; border-radius: 999px; background: #c9b97a; color: #1a1a1a; font-size: 13px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; transition: background 0.15s; }
+  .btn-gold:hover { background: #d4c78a; }
+  .btn-outline { padding: 10px 24px; border-radius: 999px; background: transparent; color: #aaa; font-size: 13px; font-weight: 500; border: 1px solid #333; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; transition: all 0.15s; }
+  .btn-outline:hover { border-color: #555; color: #ccc; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 32px 20px 24px; }
+    .hero h1 { font-size: 26px; }
+    .tabs-section { padding: 0 20px 40px; }
+    .bottom-banner { padding: 0 20px; }
+    nav { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://www.inclusivelearningsupports.com">Inclusive Learning Supports</a>
+  <a class="nav-back" href="https://www.inclusivelearningsupports.com">&#8592; Back to site</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Translation worksheets</div>
+  <h1>Learn in your language</h1>
+  <p>50 evidence-based worksheets available in Spanish, French, Arabic, Russian, Mandarin, and Haitian Creole — print and use today.</p>
+</div>
+
+<div class="tabs-section">
+  <div class="lang-tabs">
+    <button class="lang-tab active" onclick="setLang('spanish', this)">Spanish</button>
+    <button class="lang-tab" onclick="setLang('french', this)">French</button>
+    <button class="lang-tab" onclick="setLang('arabic', this)">Arabic</button>
+    <button class="lang-tab" onclick="setLang('russian', this)">Russian</button>
+    <button class="lang-tab" onclick="setLang('mandarin', this)">Mandarin</button>
+    <button class="lang-tab" onclick="setLang('haitian', this)">Haitian Creole</button>
+  </div>
+  <div class="count-pill">50 worksheets</div>
+  <div class="slider-outer">
+    <button class="arrow-btn left" onclick="slide(-1)">&#8592;</button>
+    <div class="cards-track" id="cards-track"></div>
+    <button class="arrow-btn right" onclick="slide(1)">&#8594;</button>
+  </div>
+</div>
+
+<hr>
+
+<div class="bottom-banner">
+  <div class="banner-inner">
+    <div>
+      <div class="banner-eyebrow">Full access</div>
+      <div class="banner-title">Ready for everything?</div>
+      <div class="banner-sub">Annual bundle — 100 worksheets &nbsp;·&nbsp; Lifetime library — 210 pages</div>
+    </div>
+    <div class="banner-btns">
+      <a class="btn-gold" href="https://www.inclusivelearningsupports.com/annual-bundle">Annual bundle ↗</a>
+      <a class="btn-outline" href="https://www.inclusivelearningsupports.com/lifetime-library">Lifetime library ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const langs = {
+  spanish: {
+    color: '#deeeff', text: '#0a3060',
+    topics: [
+      'Trazado A–F','Trazado G–L','Trazado M–R','Trazado S–Z',
+      'Trazado Números 1–5','Trazado Números 6–10','Trazado Figuras',
+      'Trazado Líneas y Curvas','Trazado Palabras Simples','Trazado Oraciones',
+      'Punto a Punto A–F','Punto a Punto G–L','Recorte — Líneas Rectas',
+      'Recorte — Líneas Curvas','Dibujar Círculos y Cuadrados',
+      'Colorear Dentro de las Líneas','Patrones y Cordones',
+      'Ejercicios de Pinza','Práctica de Doblar','Repaso de Motricidad Fina',
+      'Letras Mayúsculas A–F','Letras Mayúsculas G–L','Letras Mayúsculas M–R',
+      'Letras Mayúsculas S–Z','Letras Minúsculas A–F','Letras Minúsculas G–L',
+      'Letras Minúsculas M–R','Letras Minúsculas S–Z','Sonidos de Letras',
+      'Repaso del Alfabeto','Partes del Cuerpo — Cabeza y Cara',
+      'Partes del Cuerpo — Brazos y Manos','Partes del Cuerpo — Piernas y Pies',
+      'Higiene — Cepillarse los Dientes','Higiene — Lavarse las Manos',
+      'Higiene — Rutina de Baño','Secuencia de Vestirse','Rutina de Comidas',
+      'Rutina de Dormir','Repaso de Vida Diaria','Colores',
+      'Emociones y Sentimientos','Comida y Bebidas','Animales','Ropa',
+      'Números 1–20','Figuras y Tamaños','Miembros de la Familia',
+      'Ayudantes de la Comunidad','Repaso de Vocabulario'
+    ]
+  },
+  french: {
+    color: '#fde8e8', text: '#6b1a1a',
+    topics: [
+      'Traçage A–F','Traçage G–L','Traçage M–R','Traçage S–Z',
+      'Traçage Chiffres 1–5','Traçage Chiffres 6–10','Traçage Formes',
+      'Traçage Lignes et Courbes','Traçage Mots Simples','Traçage Phrases',
+      'Point à Point A–F','Point à Point G–L','Découpage — Lignes Droites',
+      'Découpage — Lignes Courbes','Dessiner Cercles et Carrés',
+      'Colorier dans les Lignes','Lacets et Motifs','Exercices de Pincement',
+      'Pratique du Pliage','Révision Motricité Fine',
+      'Lettres Majuscules A–F','Lettres Majuscules G–L','Lettres Majuscules M–R',
+      'Lettres Majuscules S–Z','Lettres Minuscules A–F','Lettres Minuscules G–L',
+      'Lettres Minuscules M–R','Lettres Minuscules S–Z','Sons des Lettres',
+      "Révision de l'Alphabet",'Parties du Corps — Tête et Visage',
+      'Parties du Corps — Bras et Mains','Parties du Corps — Jambes et Pieds',
+      'Hygiène — Se Brosser les Dents','Hygiène — Se Laver les Mains',
+      'Hygiène — Routine de Bain',"Séquence S'habiller",'Routine des Repas',
+      'Routine du Coucher','Révision Vie Quotidienne','Les Couleurs',
+      'Émotions et Sentiments','Nourriture et Boissons','Les Animaux',
+      'Les Vêtements','Chiffres 1–20','Formes et Tailles',
+      'Membres de la Famille','Aides Communautaires','Révision du Vocabulaire'
+    ]
+  },
+  arabic: {
+    color: '#fff4e0', text: '#5c3200',
+    topics: [
+      'تتبع أ–و','تتبع ز–م','تتبع ن–ص','تتبع ض–ي',
+      'تتبع الأرقام ١–٥','تتبع الأرقام ٦–١٠','تتبع الأشكال',
+      'تتبع الخطوط والمنحنيات','تتبع الكلمات البسيطة','تتبع الجمل',
+      'نقطة إلى نقطة أ–و','نقطة إلى نقطة ز–م','القص — خطوط مستقيمة',
+      'القص — خطوط منحنية','رسم الدوائر والمربعات',
+      'التلوين داخل الخطوط','الأنماط والتطريز','تمارين القرص',
+      'ممارسة الطي','مراجعة المهارات الحركية الدقيقة',
+      'الحروف الكبيرة أ–و','الحروف الكبيرة ز–م','الحروف الكبيرة ن–ص',
+      'الحروف الكبيرة ض–ي','الحروف الصغيرة أ–و','الحروف الصغيرة ز–م',
+      'الحروف الصغيرة ن–ص','الحروف الصغيرة ض–ي','أصوات الحروف',
+      'مراجعة الأبجدية','أجزاء الجسم — الرأس والوجه',
+      'أجزاء الجسم — الذراعان واليدان','أجزاء الجسم — الساقان والقدمان',
+      'النظافة — تنظيف الأسنان','النظافة — غسل اليدين',
+      'النظافة — روتين الاستحمام','تسلسل ارتداء الملابس',
+      'روتين وجبات الطعام','روتين النوم','مراجعة الحياة اليومية',
+      'الألوان','المشاعر والأحاسيس','الطعام والمشروبات',
+      'الحيوانات','الملابس','الأرقام ١–٢٠','الأشكال والأحجام',
+      'أفراد العائلة','مساعدو المجتمع','مراجعة المفردات'
+    ]
+  },
+  russian: {
+    color: '#ede8f8', text: '#2d1a6b',
+    topics: [
+      'Прописи А–Е','Прописи Ж–М','Прописи Н–С','Прописи Т–Я',
+      'Прописи Цифры 1–5','Прописи Цифры 6–10','Прописи Фигуры',
+      'Прописи Линии и Кривые','Прописи Простые Слова','Прописи Предложения',
+      'Точка к Точке А–Е','Точка к Точке Ж–М','Вырезание — Прямые Линии',
+      'Вырезание — Кривые Линии','Рисование Кругов и Квадратов',
+      'Раскрашивание в Линиях','Шнуровка и Узоры','Упражнения на Щипок',
+      'Практика Складывания','Повторение Мелкой Моторики',
+      'Заглавные Буквы А–Е','Заглавные Буквы Ж–М','Заглавные Буквы Н–С',
+      'Заглавные Буквы Т–Я','Строчные Буквы А–Е','Строчные Буквы Ж–М',
+      'Строчные Буквы Н–С','Строчные Буквы Т–Я','Звуки Букв',
+      'Повторение Алфавита','Части Тела — Голова и Лицо',
+      'Части Тела — Руки и Кисти','Части Тела — Ноги и Стопы',
+      'Гигиена — Чистка Зубов','Гигиена — Мытьё Рук',
+      'Гигиена — Процедура Купания','Последовательность Одевания',
+      'Распорядок Приёма Пищи','Вечерний Распорядок',
+      'Повторение Повседневной Жизни','Цвета','Эмоции и Чувства',
+      'Еда и Напитки','Животные','Одежда','Цифры 1–20',
+      'Формы и Размеры','Члены Семьи','Помощники Общества',
+      'Повторение Словарного Запаса'
+    ]
+  },
+  mandarin: {
+    color: '#fde8f8', text: '#6b0a4a',
+    topics: [
+      '描写 A–F','描写 G–L','描写 M–R','描写 S–Z',
+      '描写数字 1–5','描写数字 6–10','描写形状',
+      '描写线条和曲线','描写简单词语','描写句子',
+      '连点 A–F','连点 G–L','剪纸 — 直线',
+      '剪纸 — 曲线','画圆和正方形','在线内涂色',
+      '穿绳与图案','捏握练习','折叠练习','精细动作复习',
+      '大写字母 A–F','大写字母 G–L','大写字母 M–R',
+      '大写字母 S–Z','小写字母 A–F','小写字母 G–L',
+      '小写字母 M–R','小写字母 S–Z','字母发音','字母表复习',
+      '身体部位 — 头和脸','身体部位 — 手臂和手','身体部位 — 腿和脚',
+      '个人卫生 — 刷牙','个人卫生 — 洗手','个人卫生 — 洗澡程序',
+      '穿衣顺序','用餐程序','就寝程序','日常生活复习',
+      '颜色','情绪与感受','食物和饮料','动物','服装',
+      '数字 1–20','形状和大小','家庭成员','社区助手','词汇复习'
+    ]
+  },
+  haitian: {
+    color: '#e8f5ee', text: '#1a5c35',
+    topics: [
+      'Trase A–F','Trase G–L','Trase M–R','Trase S–Z',
+      'Trase Chif 1–5','Trase Chif 6–10','Trase Fòm',
+      'Trase Liy ak Kourb','Trase Mo Senp','Trase Fraz',
+      'Pwen a Pwen A–F','Pwen a Pwen G–L','Koupe — Liy Dwat',
+      'Koupe — Liy Kourb','Desine Sèk ak Kare','Kolore Anndan Liy',
+      'Lasaj ak Modèl','Egzèsis Pens','Pratik Pliye','Revizyon Motrisite Fin',
+      'Lèt Majiskil A–F','Lèt Majiskil G–L','Lèt Majiskil M–R',
+      'Lèt Majiskil S–Z','Lèt Miniskil A–F','Lèt Miniskil G–L',
+      'Lèt Miniskil M–R','Lèt Miniskil S–Z','Son Lèt','Revizyon Alfabè',
+      'Pati Kò — Tèt ak Figi','Pati Kò — Bra ak Men','Pati Kò — Janm ak Pye',
+      'Ijyèn — Brose Dan','Ijyèn — Lave Men','Ijyèn — Woutin Beny',
+      'Sekans Abiye','Woutin Repa','Woutin Dòmi','Revizyon Lavi Chak Jou',
+      'Koulè','Emosyon ak Santiman','Manje ak Bwason',
+      'Bèt','Rad','Chif 1–20','Fòm ak Gwosè',
+      'Manm Fanmi','Èd Kominotè','Revizyon Vokabilè'
+    ]
+  }
+};
+
+let current = 'spanish';
+
+function setLang(lang, el) {
+  current = lang;
+  document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderCards();
+  document.getElementById('cards-track').scrollLeft = 0;
+}
+
+function renderCards() {
+  const d = langs[current];
+  const track = document.getElementById('cards-track');
+  track.innerHTML = d.topics.map((t, i) => `
+    <div class="ws-card">
+      <div class="ws-thumb" style="background:${d.color};color:${d.text}">${String(i+1).padStart(2,'0')}</div>
+      <div class="ws-body">
+        <div class="ws-num">Page ${i+1} of 50</div>
+        <div class="ws-title">${t}</div>
+        <button class="ws-btn" onclick="window.open('#','_blank')">Download PDF</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function slide(dir) {
+  document.getElementById('cards-track').scrollBy({ left: dir * 520, behavior: 'smooth' });
+}
+
+renderCards();
+</script>
+</body>
+</html>
